@@ -88,8 +88,8 @@
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
         // Кодирование в Base64
-        imageBase64 = canvas.toDataURL("image.jpg");
-        //var output = data.replace(/^data:image\/(png|jpg);base64,/, "");
+        imageBase64 = canvas.toDataURL('image/jpeg').replace('data:image/jpeg;base64,', '');
+        //imageBase64 = imageBase64.replace('data:image/jpeg;base64,', '');
 
         var messageOutputTest = document.getElementById("message-output");
         messageOutputTest.innerHTML = "imageBase64: " + imageBase64;
