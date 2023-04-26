@@ -20,13 +20,13 @@
         <button onclick="stopWebcam();">Stop WebCam</button>
         <button onclick="snapshot();">Take Snapshot</button>
     </p>
-    <video onclick="snapshot(this);" width=400 height=400 id="video" controls autoplay></video>
+    <video onclick="snapshot(this);" width=400 height=400 id="video" autoplay playsinline></video>
     <p>
         Screenshots :
     <p>
         <canvas id="myCanvas" width="400" height="350"></canvas>
     <p>
-    <div id="message-output"></div>>
+    <div id="message-output"></div>
 </body>
 <script>
     //--------------------
@@ -47,7 +47,7 @@
 
                 // constraints
                 {
-                    video: true,
+                    video: { facingMode: { exact: "environment" } },
                     audio: false
                 },
 
@@ -88,7 +88,10 @@
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
         // Кодирование в Base64
-        imageBase64 = canvas.toDataURL("image.jpg");
+        imageBase64 = canvas.toDataURL('image/jpeg');
+
+        var messageOutputTest = document.getElementById("message-output");
+        messageOutputTest.innerHTML = "imageBase64: " + imageBase64;
 
         // Создание объекта с данными для отправки
         var requestData = {
